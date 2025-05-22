@@ -28,5 +28,6 @@ step3
     - form.css 에 form-group, form-grid 클래스 추가하기
 step4
     - javascript 코드 작성하기 시작
-    - Form Load Event 핸들링 하기
-    - Form Submit Event 핸들링하기
+    - Document Load Event 핸들링 하기
+    - Form Submit Event 핸들링 하기
+    - Form Data 검증하기

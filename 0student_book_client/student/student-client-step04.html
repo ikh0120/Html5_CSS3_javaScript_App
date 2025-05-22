@@ -93,6 +93,12 @@
         //기본으로 설정된 Event가 동작하지 않도록 하기 위함 //입력항목 검증 후 기본 Event가 동작하기 위해 잠깐 멈춤
         event.preventDefault();
         console.log("Form 제출 되었음...");
+
+        //FormData 객체 생성
+        const stuformData = new FormData(studentForm);
+        stuformData.forEach((value, key) => {
+          console.log(key, value);
+        });
       });
 
       //학생목록을 로드하는 함수
