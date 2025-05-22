@@ -42,7 +42,7 @@ studentForm.addEventListener("submit", function (event) {
 });
 
 //데이터 유효성을 체크하는 함수
-function validationStudent(student) {
+function validateStudent(student) {
     
 }
 
