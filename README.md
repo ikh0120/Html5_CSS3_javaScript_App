@@ -30,4 +30,7 @@ step4
     - javascript 코드 작성하기 시작
     - Document Load Event 핸들링 하기
     - Form Submit Event 핸들링 하기
-    - Form Data 검증하기
+    - 사용자가 입력한 데이터를 Form Data 검증하기
+step5
+    - javascript code를 form.js 파일로 분리하기
+    - 입력한 데이터를 검증하는 validate() 함수 구현하기
