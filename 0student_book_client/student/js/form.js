@@ -46,6 +46,12 @@ function validateStudent(student) {
     
 }
 
+// 이메일 유효성 검사
+function isValidEmail(email) {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailPattern.test(email);
+}
+
 //학생목록을 로드하는 함수
 function loadStudents() {
     console.log("학생 목록 로드 중.....");
