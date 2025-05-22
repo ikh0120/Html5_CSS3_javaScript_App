@@ -102,13 +102,12 @@
 
         //사용자 정의 Student 객체 생성
         const studentData = {
-          //property
           name: stuformData.get("name").trim(),
-          studentNumber:formData.get("studentNumber").trim(),
-          address: formData.get("address").trim(),
-          phoneNumber: formData.get("phoneNumber").trim(),
-          email: formData.get("email").trim(),
-          dateOfBirth: formData.get("dateOfBirth"),
+          studentNumber: stuformData.get("studentNumber").trim(),
+          address: stuformData.get("address").trim(),
+          phoneNumber: stuformData.get("phoneNumber").trim(),
+          email: stuformData.get("email").trim(),
+          dateOfBirth: stuformData.get("dateOfBirth"),
         };
 
       });
