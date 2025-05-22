@@ -94,11 +94,23 @@
         event.preventDefault();
         console.log("Form 제출 되었음...");
 
-        //FormData 객체 생성
+        //FormData 객체 생성 <form> 엘리먼트를 객체로 변환 
         const stuformData = new FormData(studentForm);
         stuformData.forEach((value, key) => {
           console.log(key + '=' + value);
         });
+
+        //사용자 정의 Student 객체 생성
+        const studentData = {
+          //property
+          name: stuformData.get("name").trim(),
+          studentNumber:formData.get("studentNumber").trim(),
+          address: formData.get("address").trim(),
+          phoneNumber: formData.get("phoneNumber").trim(),
+          email: formData.get("email").trim(),
+          dateOfBirth: formData.get("dateOfBirth"),
+        };
+
       });
 
       //학생목록을 로드하는 함수
