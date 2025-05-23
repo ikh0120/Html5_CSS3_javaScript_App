@@ -82,14 +82,23 @@ function createStudent(studentData) {
             if(response.status === 409) {   //409 Conflict: 서버가 요청을 이해했지만 현재 상태와 충돌이 발생했을 때(예: 중복 데이터)
                 //중복 오류 처리
                 throw new Error(errorData.message || '중복되는 정보가 존재합니다.');
-            }else {
-                //409 Conflict 오류가 아닌 다른 오류가 생기면
+            }else {     //409 Conflict 오류가 아닌 다른 오류가 생기면
                 throw new Error(errorData.message || '학생 등록에 실패했습니다. ')
             }
         }
         return response.json();
     })
-    .catch();
+    .then((result) => {
+        alert("학생이 성공적으로 등록되었습니다.");
+        //등록 후 초기화
+        studentForm.reset();
+        //목록 새로고침
+        loadStudents();
+    })
+    .catch((error) => {
+        console.log('Error: ', error);
+        alert(error.message);
+    });
 }
 
 //데이터 유효성을 체크하는 함수
