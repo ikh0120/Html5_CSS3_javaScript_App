@@ -316,14 +316,14 @@ function updateStudent(studentId, studentData) {
             return response.json(); //다음 then으로 넘김김
         })
         .then((result) => {
-        alert("학생이 성공적으로 등록되었습니다.");
-        //등록 후 초기화
-        studentForm.reset();
-        //목록 새로고침
-        loadStudents();
+            alert("학생이 성공적으로 등록되었습니다.");
+            //등록 후 초기화
+            studentForm.reset();
+            //목록 새로고침
+            loadStudents();
         })
         .catch((error) => {
-        console.log("Error: ", error);
-        alert(error.message);
+            console.log("Error: ", error);
+            alert(error.message);
         });
 }
