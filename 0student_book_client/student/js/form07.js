@@ -69,13 +69,13 @@ studentForm.addEventListener("submit", function (event) {
  */
 //Student 등록 함수
 function createStudent(studentData) {
-    fetch(`${API_BASE_URL}/api/students`, {     //Promise
+    fetch(`${API_BASE_URL}/api/students`, {     //Promise<Response>
         method: "POST",
         headers: { "Content-Type":"application/json" },
         body: JSON.stringify(studentData)   //Object => JSON
-    })
+    })//Promise<Response>를 then 절로 넘김
     .then(async (response) => {
-        if(!response.ok) {
+        if(!response.ok) {  //staus code가 200 ok가 아니라면
             //응답 본문을 읽어서 에러 메세지 추출
             const errorData = await response.json();
             //status code와 message를 확인
@@ -86,7 +86,8 @@ function createStudent(studentData) {
                 throw new Error(errorData.message || '학생 등록에 실패했습니다. ')
             }
         }
-        return response.json();
+        //status code가 200 ok라면
+        return response.json(); //다음 then으로 넘김김
     })
     .then((result) => {
         alert("학생이 성공적으로 등록되었습니다.");
