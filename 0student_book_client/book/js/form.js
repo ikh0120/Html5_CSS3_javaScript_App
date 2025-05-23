@@ -25,6 +25,11 @@ bookForm.addEventListener("submit", function(event){
     // });
 
     //사용자 정의 Book 객체 생성 (공백 제거)
+    //BookDTO의 구조와 맞춰주면 바로 넣을 수 있음
+    /* 삼항연산자 */
+    // boolean ? A : B => boolean값이 true면 A반환, false면 B 반환
+    /* or연산자 */
+    // A || B => A가 truthy면 A 반환, falthy면 B반환
     const bookData = {
         title: bookFormData.get("title").trim(),
         author: bookFormData.get("author").trim(),
