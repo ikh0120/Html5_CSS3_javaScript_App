@@ -46,8 +46,14 @@ studentForm.addEventListener("submit", function (event) {
     //유효한 데이터 출력하기
     // console.log(studentData);
     
-    //서버로 Student 등록 요청하기
-    createStudent(studentData);
+    if(editingStudentId) {
+
+    }else{
+        //서버로 Student 등록 요청하기
+        createStudent(studentData);
+    }
+
+    
 
 });
 
@@ -268,6 +274,6 @@ function resetForm() {
     editingStudentId = null;
     submitButton.textContent = "학생 등록";
     cancelButton.style.display = 'none';
-    
+
 
 }
