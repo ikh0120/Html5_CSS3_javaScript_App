@@ -107,8 +107,40 @@ function isValidEmail(email) {
  * const urlBT = `http://${mydomain}:${port+1}`;    //back tick을 사용하면 줄바꿈, 연산도 자유자재로 사용 가능
  * console.log(urlBT);      => http://mydomain:8081
 */
+/**Arrow function (화살표 함수)
+* function add(n1,n2) {
+*   return n1 + n2;
+* }
+* console.log(add(10,20));
+* 
+* const add2 = (n1,n2) => n1 + n2;
+* console.log(add2(10,20));
+* 
+* // () 묵시적으로 return 구문을 포함한다.
+* const add3 = (n1,n2) => (n1 + n2);
+* console.log(add3(10,20));
+* 
+* const add4 = (n1,n2) => {
+*   let temp = n1 + 10;
+*   return temp + n2;
+* }
+* console.log(add4(10,20));
+* 
+*/
 //학생목록을 로드하는 함수
 function loadStudents() {
     console.log("학생 목록 로드 중.....");
-    fetch(`${API_BASE_URL}/api/students`);
+    fetch(`${API_BASE_URL}/api/students`)   //Promise
+    .then((response) => {
+        if(!response.ok) {
+            throw new Error("학생목록을 불러오는데 실패했습니다."); //에러를 던지면 catch()쪽으로 넘어감
+        }
+        return response.json();
+    })
+    .then((students) => renderStudentTable(students))
+    .catch();
+}
+
+function renderStudentTable(students) {
+
 }
