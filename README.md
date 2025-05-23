@@ -57,5 +57,9 @@
                 * [async/await] : Promise를 더 쉽게 사용하기 위한 문법, 동기 코드처럼 작성 가능
 * step08
     * - DELETE api/student/1 서버와 통신하는 deleteStudent() 메서드 구현 fetch 함수 사용
-
+* step09
+    * - student 수정하기 전에 데이터 조회 먼저하기
+    * - GET api/students/1 student 조회하는 editStudent() 메서드 구현
+    * - 수정, 삭제 버튼의 스타일 추가하기 
+    
 
