@@ -209,8 +209,5 @@ function deleteStudent(studentId) {
         alert("학생이 성공적으로 삭제되었습니다.");
         //목록 새로고침
         loadStudents();
-
     })
-
-
 }
