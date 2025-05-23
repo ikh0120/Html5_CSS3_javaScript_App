@@ -22,7 +22,9 @@
                         <label for="author">저자: </label>
                         <input type="text" name="author" id="author" />
                     </div>
-                    
+                </div>
+
+                <div class="form-grid">
                     <div class="form-group">
                         <label for="isbn">ISBN: </label>
                         <input type="text" name="isbn" id="isbn" />
@@ -32,17 +34,20 @@
                         <label for="price">가격: </label>
                         <input type="number" name="price" id="price" />
                     </div>
-                    
+                </div>
+
+                <div class="form-grid">
                     <div class="form-group">
                         <label for="publishDate">출판일: </label>
                         <input type="date" name="publishDate" id="publishDate" placeholder="2025-05-23" />
                     </div>
-                    
                     <div class="form-group">
-                        <label for="description">정보: </label>
-                        <input type="text" name="description" id="description" />
+                        <label for="edition">에디션: </label>
+                        <input type="text" name="edition" id="edition" />
                     </div>
-                    
+                </div>
+
+                <div class="form-grid">
                     <div class="form-group">
                         <label for="language">언어: </label>
                         <input type="text" name="language" id="language" />
@@ -52,7 +57,9 @@
                         <label for="pageCount">쪽수: </label>
                         <input type="number" name="pageCount" id="pageCount" />
                     </div>
-                    
+                </div>
+                
+                <div class="form-grid">
                     <div class="form-group">
                         <label for="publisher">출판사: </label>
                         <input type="text" name="publisher" id="publisher" />
@@ -62,14 +69,15 @@
                         <label for="coverImageUrl">표지 URL: </label>
                         <input type="text" name="coverImageUrl" id="coverImageUrl" />
                     </div>
-                    
-                    <div class="form-group">
-                        <label for="edition">에디션: </label>
-                        <input type="text" name="edition" id="edition" />
-                    </div>
-                    
-                    <button type="submit">책 등록</button>
                 </div>
+
+
+                <div class="form-group">
+                    <label>정보: </label>
+                    <textarea name="description" rows="4" cols="50"></textarea>
+                </div>
+
+                <button type="submit">책 등록</button>
             </form>
         </div>
 
@@ -83,12 +91,8 @@
                         <th>ISBN</th>
                         <th>가격</th>
                         <th>출판일</th>
-                        <th>설명</th>
-                        <th>언어</th>
-                        <th>쪽수</th>
                         <th>출판사</th>
-                        <th>표지 URL</th>
-                        <th>에디션</th>
+                        <th>액션</th>
                     </tr>
                 </thead>
                 <tbody id="bookTableBody"></tbody>
