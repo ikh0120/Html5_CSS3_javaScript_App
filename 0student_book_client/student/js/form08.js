@@ -47,41 +47,6 @@ studentForm.addEventListener("submit", function (event) {
 
 });
 
-//Student 등록 함수
-function createStudent(studentData) {
-    fetch(`${API_BASE_URL}/api/students`, {     //Promise<Response>
-        method: "POST",
-        headers: { "Content-Type":"application/json" },
-        body: JSON.stringify(studentData)   //Object => JSON
-    })//Promise<Response>를 then 절로 넘김
-    .then(async (response) => {
-        if(!response.ok) {  //staus code가 200 ok가 아니라면
-            //응답 본문을 읽어서 에러 메세지 추출
-            const errorData = await response.json();
-            //status code와 message를 확인
-            if(response.status === 409) {   //409 Conflict: 서버가 요청을 이해했지만 현재 상태와 충돌이 발생했을 때(예: 중복 데이터)
-                //중복 오류 처리
-                throw new Error(errorData.message || '중복되는 정보가 존재합니다.');
-            }else {     //409 Conflict 오류가 아닌 다른 오류가 생기면
-                throw new Error(errorData.message || '학생 등록에 실패했습니다. ')
-            }
-        }
-        //status code가 200 ok라면
-        return response.json(); //다음 then으로 넘김김
-    })
-    .then((result) => {
-        alert("학생이 성공적으로 등록되었습니다.");
-        //등록 후 초기화
-        studentForm.reset();
-        //목록 새로고침
-        loadStudents();
-    })
-    .catch((error) => {
-        console.log('Error: ', error);
-        alert(error.message);
-    });
-}
-
 //데이터 유효성을 체크하는 함수
 function validateStudent(student) {
     if (!student.name) {
@@ -183,4 +148,47 @@ function renderStudentTable(students) {     //[]: students
         //<tbody>의 아래에 <tr>을 추가시켜 준다.
         studentTableBody.appendChild(row);
     });
+}
+
+//Student 등록 함수
+function createStudent(studentData) {
+    fetch(`${API_BASE_URL}/api/students`, {     //Promise<Response>
+        method: "POST",
+        headers: { "Content-Type":"application/json" },
+        body: JSON.stringify(studentData)   //Object => JSON
+    })//Promise<Response>를 then 절로 넘김
+    .then(async (response) => {
+        if(!response.ok) {  //staus code가 200 ok가 아니라면
+            //응답 본문을 읽어서 에러 메세지 추출
+            const errorData = await response.json();
+            //status code와 message를 확인
+            if(response.status === 409) {   //409 Conflict: 서버가 요청을 이해했지만 현재 상태와 충돌이 발생했을 때(예: 중복 데이터)
+                //중복 오류 처리
+                throw new Error(errorData.message || '중복되는 정보가 존재합니다.');
+            }else {     //409 Conflict 오류가 아닌 다른 오류가 생기면
+                throw new Error(errorData.message || '학생 등록에 실패했습니다. ')
+            }
+        }
+        //status code가 200 ok라면
+        return response.json(); //다음 then으로 넘김김
+    })
+    .then((result) => {
+        alert("학생이 성공적으로 등록되었습니다.");
+        //등록 후 초기화
+        studentForm.reset();
+        //목록 새로고침
+        loadStudents();
+    })
+    .catch((error) => {
+        console.log('Error: ', error);
+        alert(error.message);
+    });
+}
+
+//학생 삭제 함수
+function deleteStudent(studentId) {
+    if(confirm(`ID = ${studentId}인 학생을 정말로 삭제하겠습니까?`)) {
+        return ;
+    }
+
 }
