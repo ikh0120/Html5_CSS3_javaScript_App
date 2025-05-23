@@ -212,3 +212,22 @@ function deleteStudent(studentId) {
         loadStudents();
     })
 }
+
+
+//학생 정보 수정 전 데이터 로드하는 함수
+function editStudent(studentId) {
+    fetch(`${API_BASE_URL}/api/students/${studentId}`)
+        .then(async (response) => {
+            if(!response.ok) {  //staus code가 200 ok가 아니라면
+                //응답 본문을 읽어서 에러 메세지 추출
+                const errorData = await response.json();
+                //status code와 message를 확인
+                if(response.status === 404) {
+                    throw new Error(errorData.message || '존재하지 않는 학생입니다.');
+                }
+            }
+        
+            return response.json();
+    })
+   
+}
