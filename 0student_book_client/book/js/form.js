@@ -60,6 +60,16 @@ function validateBook(book) {
         return false;
     }
 
+    if(!book.isbn) {
+        alert("ISBN을 입력해주세요.");
+        return false;
+    }
+
+    if(!book.price) {
+        alert("가격을 입력해주세요");
+        return false;
+    }
+
     //ISBN 형식 검사 (기본적인 영/숫자 조합)
     const isbnPattern = /^[0-9X-]+$/;
     if(!isbnPattern.test(book.isbn)) {
