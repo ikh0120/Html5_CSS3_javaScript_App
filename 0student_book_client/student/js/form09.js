@@ -1,5 +1,7 @@
 //전역변수 선언
 const API_BASE_URL = "http://localhost:8080";
+//현재 수정중인 학생 ID
+let editingStudentId = null;
 
 //DOM 엘리먼트 가져오기
 const studentForm = document.getElementById("studentForm");
@@ -211,6 +213,12 @@ function deleteStudent(studentId) {
         //목록 새로고침
         loadStudents();
     })
+        .catch((error) => {
+        console.log('Error: ', error);
+        alert(error.message);
+    });
+    
+
 }
 
 
@@ -228,6 +236,25 @@ function editStudent(studentId) {
             }
         
             return response.json();
-    })
+        })
+        .then((student) => {
+            //Form에 데이터 채우기
+            studentForm.name.value = student.name;
+            studentForm.studentNumber.value = student.studentNumber;
+            if(student.detail) {
+                studentForm.address.value = student.detail.address;
+                studentForm.phoneNumber.value = student.detail.phoneNumber;
+                studentForm.email.value = student.detail.email;
+                studentForm.dateOfBirth.value = student.detail.dateOfBirth || '';
+            }
+            //수정 Mode 설정
+            editingStudentId = studentId;
+            
+
+        })
+        .catch((error) => {
+            console.log('Error: ', error);
+            alert(error.message);
+        });
    
 }
