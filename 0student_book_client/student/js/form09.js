@@ -47,8 +47,8 @@ studentForm.addEventListener("submit", function (event) {
     // console.log(studentData);
     
     if(editingStudentId) {
-
-    }else{
+        updateStudent(editingStudentId, studentData);
+    } else {
         //서버로 Student 등록 요청하기
         createStudent(studentData);
     }
@@ -271,8 +271,11 @@ function editStudent(studentId) {
 function resetForm() {
     //form 초기화
     studentForm.reset();
+    //수정모드 해제
     editingStudentId = null;
+    //title 변경
     submitButton.textContent = "학생 등록";
+    //취소버튼 사라짐
     cancelButton.style.display = 'none';
 
 
