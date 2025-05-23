@@ -46,7 +46,9 @@ studentForm.addEventListener("submit", function (event) {
     //유효한 데이터 출력하기
     // console.log(studentData);
     
+    //현재 수정중인 학생 ID가 있으면 
     if(editingStudentId) {
+        //서버로 Student 수정 요청하기
         updateStudent(editingStudentId, studentData);
     } else {
         //서버로 Student 등록 요청하기
