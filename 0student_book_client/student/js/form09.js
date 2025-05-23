@@ -4,6 +4,7 @@ const API_BASE_URL = "http://localhost:8080";
 //DOM 엘리먼트 가져오기
 const studentForm = document.getElementById("studentForm");
 const studentTableBody = document.getElementById("studentTableBody");
+const cancelButton = studentForm.querySelector(".cancel-btn");
 
 //Document Load 이벤트 처리하기 //DOMContentLoaded라는 이벤트가 발생하면 loadStudents() 메서드를 실행해라
 document.addEventListener("DOMContentLoaded", function () {
