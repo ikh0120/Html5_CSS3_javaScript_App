@@ -26,10 +26,12 @@ studentForm.addEventListener("submit", function (event) {
     const studentData = {
         name: stuformData.get("name").trim(),
         studentNumber: stuformData.get("studentNumber").trim(),
-        address: stuformData.get("address").trim(),
-        phoneNumber: stuformData.get("phoneNumber").trim(),
-        email: stuformData.get("email").trim(),
-        dateOfBirth: stuformData.get("dateOfBirth"),
+        detailRequest: {
+            address: stuformData.get("address").trim(),
+            phoneNumber: stuformData.get("phoneNumber").trim(),
+            email: stuformData.get("email").trim(),
+            dateOfBirth: stuformData.get("dateOfBirth"),
+        }
     };
 
     //유효성 체크하기
