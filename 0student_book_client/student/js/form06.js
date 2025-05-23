@@ -99,7 +99,16 @@ function isValidEmail(email) {
     return emailPattern.test(email);
 }
 
+/** `` back tick Template Literals 
+ * const port = 8080;
+ * const domain = "mydomain";
+ * const url = 'http://' + domain + ':' + port;
+ * console.log(url);        => http://mydomain:8080
+ * const urlBT = `http://${mydomain}:${port+1}`;    //back tick을 사용하면 줄바꿈, 연산도 자유자재로 사용 가능
+ * console.log(urlBT);      => http://mydomain:8081
+*/
 //학생목록을 로드하는 함수
 function loadStudents() {
     console.log("학생 목록 로드 중.....");
+    fetch(`${API_BASE_URL}/api/students`);
 }
