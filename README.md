@@ -61,5 +61,6 @@
     * - student 수정하기 전에 데이터 조회 먼저하기
     * - GET api/students/1 student 조회하는 editStudent() 메서드 구현
     * - 수정, 삭제 버튼의 스타일 추가하기 
-    
+    * - 수정 모드일 때 취소 버튼 보여주고, resetForm() 메서드 구현하고 연결하기
+    * - PUT api/students/1 student 수정하는 updateStudent() 메서드 구현
 
