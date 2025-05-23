@@ -201,7 +201,7 @@ function deleteStudent(studentId) {
             //status code와 message를 확인
             if(response.status === 404) {
                 throw new Error(errorData.message || '존재하지 않는 학생입니다.');
-            }else {\
+            }else {
                 throw new Error(errorData.message || '학생 삭제에 실패했습니다. ')
             }
         }
