@@ -144,12 +144,54 @@ function loadStudents() {
     });
 }
 
-function renderStudentTable(students) {
+//=========[truthy / falsy 개념 정리]=========
+/*
+ * - truthy: 조건문 등에서 true처럼 평가되는 값
+ *   예: "문자열", 1, [], {}, "0", "false", 등
+ * 
+ * - falsy: 조건문 등에서 false처럼 평가되는 값
+ *   falsy 값 7가지:
+ *     1. false
+ *     2. 0
+ *     3. -0
+ *     4. ""
+ *     5. null
+ *     6. undefined
+ *     7. NaN
+ * 
+ * - if문, 삼항연산자, ||, && 등에서 자주 사용됨
+ */
+/*
+* <td>${student.detail ? student.detail.email || "A" : "B"}</td>
+*  - student.detail이 존재하면
+*      - student.detail.email이 존재하면(truthy) => student.detail.email 반환
+*      - student.detail.email이 존재하지 않으면(falsy) => "A" 반환
+*  - student.detail이 존재하지 않으면 "B" 반환
+* 이 것과 동일
+* =>   <td>${student.detail ? (student.detail.email || "A") : "B"}</td>
+*/
+/*
+* <td>${student.detail ? student.detail.email || "-" : "-"}</td>
+*  - student.detail이 있든 없든
+*  - student.detail.email이 있든 없든 
+*  - "-" 반환
+*  ==> 즉 항상 "-" 아니면 student.detail.email 값을 출력함
+* 이 것과 동일
+* =>   <td>${student.detail?.email || "-"}</td>
+* =>   <td>${student.detail?.email ?? "-"}</td> // 단, email이 null 또는 undefined일 때만 "-" 출력
+*
+* ?. : Optional Chaining (옵셔널 체이닝)
+*       - 앞 객체가 null/undefined일 경우 에러 대신 undefined 반환
+* ?? : Nullish Coalescing (null 병합 연산자)
+*       - 왼쪽이 null 또는 undefined일 때만 오른쪽 값 반환
+*/
+function renderStudentTable(students) {     //[]: students
     console.log(students);
 
+    //id="studentTableBody"인 태그 초기화
     studentTableBody.innerHTML = "";
 
-    students.forEach((student) => {
+    students.forEach((student) => {     //{}: student
         //<tr> 엘리먼트를 생성하기
         const row = document.createElement("tr");
         
