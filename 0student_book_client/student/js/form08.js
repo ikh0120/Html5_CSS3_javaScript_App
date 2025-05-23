@@ -200,9 +200,8 @@ function deleteStudent(studentId) {
             const errorData = await response.json();
             //status code와 message를 확인
             if(response.status === 404) {
-                //중복 오류 처리
                 throw new Error(errorData.message || '존재하지 않는 학생입니다.');
-            }else {     //409 Conflict 오류가 아닌 다른 오류가 생기면
+            }else {\
                 throw new Error(errorData.message || '학생 삭제에 실패했습니다. ')
             }
         }
