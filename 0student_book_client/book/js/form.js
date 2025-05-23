@@ -50,6 +50,7 @@ bookForm.addEventListener("submit", function(event){
 
 //데이터 유효성을 체크하는 함수
 function validateBook(book) {
+    //필수 필드 검사
     if(!book.title) {
         alert("제목을 입력해주세요.");
         return false;
