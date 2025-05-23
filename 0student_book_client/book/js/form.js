@@ -7,6 +7,7 @@ const bookTableBody = document.getElementById("bookTableBody");
 
 //Document Load 이벤트 처리하기 //DOMContentLoaded 이벤트 발생 시 loadBook() 실행하기
 document.addEventListener("DOMContentLoaded", function() {
+    console.log("페이지 로드 완료");
     loadBooks();
 });
 
@@ -27,14 +28,16 @@ bookForm.addEventListener("submit", function(event){
         title: bookFormData.get("title").trim(),
         author: bookFormData.get("author").trim(),
         isbn: bookFormData.get("isbn").trim(),
-        price: parseInt(bookFormData.get("price")),
-        publishDate: bookFormData.get("publishDate"),
-        description: bookFormData.get("description").trim(),
-        language: bookFormData.get("language").trim(),
-        pageCount: parseInt(bookFormData.get("pageCount")),
-        publisher: bookFormData.get("publisher").trim(),
-        coverImageUrl: bookFormData.get("coverImageUrl").trim(),
-        edition: bookFormData.get("edition").trim(),
+        price: bookFormData.get("price") ? parseInt(bookFormData.get("price")) : null,
+        publishDate: bookFormData.get("publishDate") || null,
+        detailRequest: {
+            description: bookFormData.get("description").trim() || null,
+            language: bookFormData.get("language").trim() || null,
+            pageCount: bookFormData.get("pageCount") ? parseInt(bookFormData.get("pageCount")) : null,
+            publisher: bookFormData.get("publisher").trim() || null,
+            coverImageUrl: bookFormData.get("coverImageUrl").trim() || null,
+            edition: bookFormData.get("edition").trim() || null,
+        }
     };
 
     //유효성 체크하기
@@ -42,7 +45,7 @@ bookForm.addEventListener("submit", function(event){
         return ; //검증 실패하면 반환하기
     }
     //유효한 데이터 출력하기
-    console.log(bookData);
+    console.log("유효한 데이터: ", bookData);
 });
 
 //데이터 유효성을 체크하는 함수
@@ -57,53 +60,44 @@ function validateBook(book) {
         return false;
     }
 
-    if(!book.isbn) {
-        alert("ISBN을 입력해주세요.");
+    //ISBN 형식 검사 (기본적인 영/숫자 조합)
+    const isbnPattern = /^[0-9X-]+$/;
+    if(!isbnPattern.test(book.isbn)) {
+        alert("올바른 ISBN 형식이 아닙니다. (숫자와 X, -만 허용)");
         return false;
     }
     
-    if(!book.price) {
-        alert("가격을 입력해주세요.");
+    //가격 유효성 검사
+    if(book.price !== null && book.price < 0) {
+        alert("가격은 0 이상이어야 합니다.");
         return false;
     }
 
-    if(!book.publishDate) {
-        alert("출판일을 입력해주세요.");
+    // 페이지 수 유효성 검사
+    if (book.bookDetail.pageCount !== null && book.bookDetail.pageCount < 0) {
+        alert('페이지 수는 0 이상이어야 합니다.');
         return false;
     }
 
-    if(!book.description) {
-        alert("책 정보를 입력해주세요.");
-        return false;
-    }
-
-    if(!book.language) {
-        alert("책 언어를 입력해주세요.");
-        return false;
-    }
-
-    if(!book.pageCount) {
-        alert("페이지수를 입력해주세요.");
-        return false;
-    }
-
-    if(!book.publisher) {
-        alert("출판사를 입력해주세요.");
-        return false;
-    }
-
-    if(!book.coverImageUrl) {
-        alert("표지 URL를 입력해주세요.");
-        return false;
-    }
-
-    if(!book.edition) {
-        alert("에디션을 입력해주세요.");
+    // URL 형식 검사 (입력된 경우에만)
+    if (book.bookDetail.coverImageUrl && !isValidUrl(book.bookDetail.coverImageUrl)) {
+        alert('올바른 이미지 URL 형식이 아닙니다.');
         return false;
     }
 
     return true;
 } //validateBook
+
+// URL 유효성 검사
+function isValidUrl(string) {
+    try {
+        new URL(string);
+        return true;
+    }
+    catch(_){
+        return false;
+    }
+}
 
 //책 목록을 로드하는 메서드
 function loadBooks() {
