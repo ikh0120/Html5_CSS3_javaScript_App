@@ -54,6 +54,15 @@
             <input type="date" name="dateOfBirth" id="dateOfBirth" />
           </div>
           <button type="submit">학생 등록</button>
+          <button 
+            type="button"
+            class="cancel-btn"
+            onclick="resetForm()"
+            style="display: none"
+          >
+            취소
+          </button>
+          <span class="error-message" id="formError"></span>
         </div>
       </form>
     </div>
