@@ -46,4 +46,15 @@
 * step07
     * - studentData 객체 구조 변경하기 및 validate() 메서드 수정
     * - POST api/student 서버와 통신하는 createStudent() 메서드 구현
+        * - JSON.stringify(Object) => 자바스크립트 객체(Object)를 JSON 문자열로 변환
+        * - JSON.parse(JSON) => JSON 문자열을 자바스크립트 객체(Object)로 변환
+        * - async/await는 JavaScript에서 비동기 코드를 동기식처럼 작성할 수 있게 해주는 문법임
+            * - async 함수: 함수 앞에 async 키워드를 붙이면 해당 함수는 항상 Promise를 반환
+            * - await 표현식: await 키워드는 Promise가 처리될 때 까지 함수 실행을 일시 중지
+                * [동기(Synchronous)] : 한 작업이 끝나야 다음 작업이 시작됨
+                * [비동기(Asynchronous)] : 기다리지 않고 다음 작업부터 실행, 결과는 나중에 처리
+                * [Promise] : 비동기 작업을 처리하기 위한 객체, then/catch로 결과 처리
+                * [async/await] : Promise를 더 쉽게 사용하기 위한 문법, 동기 코드처럼 작성 가능
+
+
 
