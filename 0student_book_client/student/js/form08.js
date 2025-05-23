@@ -194,6 +194,24 @@ function deleteStudent(studentId) {
     fetch(`${API_BASE_URL}/api/students/${studentId}`, {
         method: 'DELETE'
     })
+    .then(async (response) => {
+        if(!response.ok) {  //staus code가 200 ok가 아니라면
+            //응답 본문을 읽어서 에러 메세지 추출
+            const errorData = await response.json();
+            //status code와 message를 확인
+            if(response.status === 409) {   //409 Conflict: 서버가 요청을 이해했지만 현재 상태와 충돌이 발생했을 때(예: 중복 데이터)
+                //중복 오류 처리
+                throw new Error(errorData.message || '존재하지 않는 학생입니다.');
+            }else {     //409 Conflict 오류가 아닌 다른 오류가 생기면
+                throw new Error(errorData.message || '학생 삭제에 실패했습니다. ')
+            }
+        }
+        
+        alert("학생이 성공적으로 삭제되었습니다.");
+        //목록 새로고침
+        loadStudents();
+        
+    })
 
-    
+
 }
