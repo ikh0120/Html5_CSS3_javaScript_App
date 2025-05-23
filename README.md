@@ -55,6 +55,7 @@
                 * [비동기(Asynchronous)] : 기다리지 않고 다음 작업부터 실행, 결과는 나중에 처리
                 * [Promise] : 비동기 작업을 처리하기 위한 객체, then/catch로 결과 처리
                 * [async/await] : Promise를 더 쉽게 사용하기 위한 문법, 동기 코드처럼 작성 가능
-
+* step08
+    * - DELETE api/student/1 서버와 통신하는 deleteStudent() 메서드 구현 fetch 함수 사용
 
 
