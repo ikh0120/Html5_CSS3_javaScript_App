@@ -39,6 +39,10 @@
 * step06
     * - GET /api/students 서버와 통신하는 loadStudents() 구현 fetch 함수 사용
     * - renderStudentTable() 구현 table 목록을 동적으로 출력하기
+    * - `` back tick Template Literals , Arrow function (화살표 함수)
+    * - 주석 추가
+        * - [truthy/falsy 개념 정리]
+        * - ?. , ??, || 개념 정리
 * step07
     * - studentData 객체 구조 변경하기 및 validate() 메서드 수정
     * - POST api/student 서버와 통신하는 createStudent() 메서드 구현

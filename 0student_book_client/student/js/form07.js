@@ -30,7 +30,7 @@ studentForm.addEventListener("submit", function (event) {
             address: stuformData.get("address").trim(),
             phoneNumber: stuformData.get("phoneNumber").trim(),
             email: stuformData.get("email").trim(),
-            dateOfBirth: stuformData.get("dateOfBirth"),
+            dateOfBirth: stuformData.get("dateOfBirth") || null, //값이 없으면 null
         }
     };
 
@@ -57,17 +57,17 @@ function validateStudent(student) {
         return false;
     }
 
-    if (!student.address) {
+    if (!student.detailRequest.address) {
         alert("주소를 입력해주세요.");
         return false;
     }
 
-    if (!student.phoneNumber) {
+    if (!student.detailRequest.phoneNumber) {
         alert("전화번호를 입력해주세요.");
         return false;
     }
 
-    if (!student.email) {
+    if (!student.detailRequest.email) {
         alert("이메일을 입력해주세요.");
         return false;
     }
@@ -81,13 +81,13 @@ function validateStudent(student) {
 
     // 전화번호 형식 검사
     const phonePattern = /^[0-9-\s]+$/;
-    if (!phonePattern.test(student.phoneNumber)) {
+    if (!phonePattern.test(student.detailRequest.phoneNumber)) {
         alert("올바른 전화번호 형식이 아닙니다.");
         return false;
     }
 
     // 이메일 형식 검사 (입력된 경우에만)
-    if (student.email && !isValidEmail(student.email)) {
+    if (student.email && !isValidEmail(student.detailRequest.email)) {
         alert("올바른 이메일 형식이 아닙니다.");
         return false;
     }
@@ -101,34 +101,7 @@ function isValidEmail(email) {
     return emailPattern.test(email);
 }
 
-/** `` back tick Template Literals 
- * const port = 8080;
- * const domain = "mydomain";
- * const url = 'http://' + domain + ':' + port;
- * console.log(url);        => http://mydomain:8080
- * const urlBT = `http://${mydomain}:${port+1}`;    //back tick을 사용하면 줄바꿈, 연산도 자유자재로 사용 가능
- * console.log(urlBT);      => http://mydomain:8081
-*/
-/**Arrow function (화살표 함수)
-* function add(n1,n2) {
-*   return n1 + n2;
-* }
-* console.log(add(10,20));
-* 
-* const add2 = (n1,n2) => n1 + n2;
-* console.log(add2(10,20));
-* 
-* // () 묵시적으로 return 구문을 포함한다.
-* const add3 = (n1,n2) => (n1 + n2);
-* console.log(add3(10,20));
-* 
-* const add4 = (n1,n2) => {
-*   let temp = n1 + 10;
-*   return temp + n2;
-* }
-* console.log(add4(10,20));
-* 
-*/
+
 //학생목록을 로드하는 함수
 function loadStudents() {
     console.log("학생 목록 로드 중.....");
@@ -146,47 +119,6 @@ function loadStudents() {
     });
 }
 
-//=========[truthy / falsy 개념 정리]=========
-/*
- * - truthy: 조건문 등에서 true처럼 평가되는 값
- *   예: "문자열", 1, [], {}, "0", "false", 등
- * 
- * - falsy: 조건문 등에서 false처럼 평가되는 값
- *   falsy 값 7가지:
- *     1. false
- *     2. 0
- *     3. -0
- *     4. ""
- *     5. null
- *     6. undefined
- *     7. NaN
- * 
- * - if문, 삼항연산자, ||, && 등에서 자주 사용됨
- */
-/*
-* <td>${student.detail ? student.detail.email || "A" : "B"}</td>
-*  - student.detail이 존재하면
-*      - student.detail.email이 존재하면(truthy) => student.detail.email 반환
-*      - student.detail.email이 존재하지 않으면(falsy) => "A" 반환
-*  - student.detail이 존재하지 않으면 "B" 반환
-* 이 것과 동일
-* =>   <td>${student.detail ? (student.detail.email || "A") : "B"}</td>
-*/
-/*
-* <td>${student.detail ? student.detail.email || "-" : "-"}</td>
-*  - student.detail이 있든 없든
-*  - student.detail.email이 있든 없든 
-*  - "-" 반환
-*  ==> 즉 항상 "-" 아니면 student.detail.email 값을 출력함
-* 이 것과 동일
-* =>   <td>${student.detail?.email || "-"}</td>
-* =>   <td>${student.detail?.email ?? "-"}</td> // 단, email이 null 또는 undefined일 때만 "-" 출력
-*
-* ?. : Optional Chaining (옵셔널 체이닝)
-*       - 앞 객체가 null/undefined일 경우 에러 대신 undefined 반환
-* ?? : Nullish Coalescing (null 병합 연산자)
-*       - 왼쪽이 null 또는 undefined일 때만 오른쪽 값 반환
-*/
 function renderStudentTable(students) {     //[]: students
     console.log(students);
 
